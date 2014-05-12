@@ -34,10 +34,12 @@ module Persona
 
     def fetch_day(date)
       raise ArgumentError unless date.kind_of? Date
+      puts "fetching data for #{date.to_s}"
 
       failures = 0
 
       0.upto(23).each do |hour|
+        print "."
         begin
           gz = open("http://data.githubarchive.org/#{date.to_s}-#{hour}.json.gz")
           js = Zlib::GzipReader.new(gz).read
@@ -58,6 +60,7 @@ module Persona
           puts "whoops! #{e.inspect}"
         end
       end
+      puts ""
 
       puts "there were #{failures} events we could not parse"
     end
