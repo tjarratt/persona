@@ -1,4 +1,9 @@
+# -*- coding: utf-8 -*-
+lib = File.expand_path("../lib", __FILE__)
+$:.unshift lib unless $:.include? lib
+
 require 'rake'
+require 'persona'
 
 PERSONA_PATH = File.join(ENV['HOME'], '.persona')
 
@@ -21,4 +26,14 @@ task :new, :name do |task, args|
     Dir.mkdir args[:name] unless Dir.exists? args[:name]
     `git add . ; git ci -m "Add persona: #{args[:name]}"`
   end
+end
+
+desc "Testing"
+task :test do
+  gh = Persona::Github.new
+  gh.fetch_yesterday
+
+  puts gh.random_repo
+  puts gh.random_committer
+  puts gh.random_handle
 end
