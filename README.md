@@ -14,6 +14,8 @@ The vision I have of Persona is of a fully automated, pushbutton system for gene
 
 * [x] init rake task
 * [x] new persona rake task (rake new"[fred]")
+* [ ] fetch github data for a single day
+* [ ] fetch github data for a range of days
 * [ ] need random name
 * [ ] create github profile
 * [ ] new Go project
